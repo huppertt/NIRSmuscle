@@ -28,7 +28,6 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
-    <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
@@ -234,12 +233,14 @@
                               <widget class="Gtk.ComboBox" id="combobox5">
                                 <property name="MemberName" />
                                 <property name="IsTextCombo">True</property>
-                                <property name="Items" translatable="yes">HbO2
+                                <property name="Items" translatable="yes">EMG
+HbO2
 HbR
 StO2
 HbT
 Optical Density 660nm
 Optical Density 850nm
+Raw EMG
 Raw 850nm #1
 Raw 660nm #1
 Raw 660nm #2
@@ -248,9 +249,8 @@ Raw 660nm #4
 Raw 850nm #1
 Raw 850nm #2
 Raw 850nm #3
-Raw 850nm #4
-</property>
-                                <property name="Active">0</property>
+Raw 850nm #4</property>
+                                <property name="Active">1</property>
                               </widget>
                               <packing>
                                 <property name="Position">1</property>
@@ -326,6 +326,7 @@ Raw 850nm #4
                                         <property name="Type">TextOnly</property>
                                         <property name="Label" translatable="yes">Mark Event</property>
                                         <property name="UseUnderline">True</property>
+                                        <signal name="Clicked" handler="MarkStimulus" />
                                       </widget>
                                       <packing>
                                         <property name="Position">0</property>
@@ -410,7 +411,7 @@ Raw 850nm #4
                             <property name="Type">TextOnly</property>
                             <property name="Label" translatable="yes">Start</property>
                             <property name="UseUnderline">True</property>
-                            <signal name="Activated" handler="ClickedStart" />
+                            <signal name="Clicked" handler="ClickedStart" />
                           </widget>
                           <packing>
                             <property name="Position">0</property>
@@ -433,6 +434,7 @@ Raw 850nm #4
                         <child>
                           <widget class="Gtk.Frame" id="frame9">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <child>
                               <widget class="Gtk.Alignment" id="GtkAlignment4">
                                 <property name="MemberName" />
@@ -469,7 +471,6 @@ Raw 850nm #4
                                             <property name="ClimbRate">10</property>
                                             <property name="Numeric">True</property>
                                             <property name="Value">255</property>
-                                            <signal name="Changed" handler="LED660changed" />
                                           </widget>
                                           <packing>
                                             <property name="Position">1</property>
@@ -512,7 +513,6 @@ Raw 850nm #4
                                             <property name="ClimbRate">5</property>
                                             <property name="Numeric">True</property>
                                             <property name="Value">255</property>
-                                            <signal name="Changed" handler="LED850changed" />
                                           </widget>
                                           <packing>
                                             <property name="Position">1</property>
